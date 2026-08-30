@@ -46,7 +46,7 @@ function render() {
   outputValue.classList.toggle('high', output === 1);
   outputCaption.textContent = output === 1 ? 'HIGH' : 'LOW';
   inputBNode.style.visibility = state.gate === 'NOT' ? 'hidden' : 'visible';
-  circuitNote.textContent = state.gate === 'NOT' ? 'Toggle input A to observe the inverted output.' : 'Toggle either input to observe the gate's output.';
+  circuitNote.textContent = state.gate === 'NOT' ? 'Toggle input A to observe the inverted output.' : "Toggle either input to observe the gate's output.";
   bitButtons.forEach((button) => {
     const value = state[button.dataset.input];
     button.textContent = value;
