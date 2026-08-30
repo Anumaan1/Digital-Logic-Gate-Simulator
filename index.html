@@ -1,7 +1,55 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Digital Logic Gate Simulator</title></head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive digital electronics simulator for logic gates and truth tables." />
+  <title>Digital Logic Gate Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 <body onload="var s=document.createElement('script');s.src='script.js';document.body.appendChild(s)">
-<main><h1>Digital Logic Gate Simulator</h1><p>Interactive digital electronics project.</p></main>
+  <div class="app-shell">
+    <header class="site-header">
+      <div class="brand-mark" aria-hidden="true">⌁</div>
+      <div><p class="eyebrow">DIGITAL ELECTRONICS LAB</p><h1>Logic Gate Simulator</h1></div>
+      <div class="header-status"><span class="status-dot"></span> Live simulation</div>
+    </header>
+    <main class="workspace">
+      <aside class="gate-panel panel">
+        <div class="panel-heading"><div><p class="eyebrow">SELECT A GATE</p></div><span class="gate-count">7 gates</span></div>
+        <div class="gate-list" role="listbox" aria-label="Logic gate selection">
+          <button class="gate-button active" data-gate="AND" role="option" aria-selected="true"><span class="gate-symbol">&amp;&amp;</span><span><strong>AND</strong><small>Both inputs high</small></span></button>
+          <button class="gate-button" data-gate="OR" role="option" aria-selected="false"><span class="gate-symbol">≥1</span><span><strong>OR</strong><small>Any input high</small></span></button>
+          <button class="gate-button" data-gate="NOT" role="option" aria-selected="false"><span class="gate-symbol">¬</span><span><strong>NOT</strong><small>Invert the input</small></span></button>
+          <button class="gate-button" data-gate="NAND" role="option" aria-selected="false"><span class="gate-symbol">⊼</span><span><strong>NAND</strong><small>Inverted AND</small></span></button>
+          <button class="gate-button" data-gate="NOR" role="option" aria-selected="false"><span class="gate-symbol">⊽</span><span><strong>NOR</strong><small>Inverted OR</small></span></button>
+          <button class="gate-button" data-gate="XOR" role="option" aria-selected="false"><span class="gate-symbol">⊕</span><span><strong>XOR</strong><small>Inputs differ</small></span></button>
+          <button class="gate-button" data-gate="XNOR" role="option" aria-selected="false"><span class="gate-symbol">⊙</span><span><strong>XNOR</strong><small>Inputs match</small></span></button>
+        </div>
+      </aside>
+      <section class="simulation-column">
+        <section class="intro-row">
+          <div><p class="eyebrow accent">CURRENT CIRCUIT</p><h2 id="gate-title">AND Gate</h2><p id="gate-description" class="muted">The output is HIGH only when both inputs are HIGH.</p></div>
+          <div class="expression" id="expression">A · B</div>
+        </section>
+        <section class="circuit-card panel" aria-label="Live circuit simulation">
+          <div class="circuit-grid two-inputs" id="circuit">
+            <div class="input-node"><span class="node-label">INPUT A</span><button class="bit-toggle" data-input="A" aria-label="Toggle input A" aria-pressed="false">0</button></div>
+            <div class="wire horizontal-wire"></div>
+            <div class="gate-visual" id="gate-visual"><span class="visual-symbol">&amp;&amp;</span><span class="visual-label">AND</span></div>
+            <div class="wire horizontal-wire"></div>
+            <div class="output-node"><span class="node-label">OUTPUT</span><div class="output-value" id="output-value" aria-live="polite">0</div><span class="output-caption" id="output-caption">LOW</span></div>
+            <div class="input-node input-b"><span class="node-label">INPUT B</span><button class="bit-toggle" data-input="B" aria-label="Toggle input B" aria-pressed="true">1</button></div>
+          </div>
+          <div class="circuit-note"><span>ⓘ</span><span id="circuit-note">Toggle either input to observe the gate's output.</span></div>
+        </section>
+        <section class="truth-card panel">
+          <div class="section-heading"><div><p class="eyebrow">REFERENCE</p><h3>Truth table</h3></div><span class="table-legend"><i></i> Current state</span></div>
+          <div class="table-wrap"><table><thead><tr><th>INPUT A</th><th>INPUT B</th><th id="truth-output-heading">OUTPUT</th></tr></thead><tbody id="truth-table-body"></tbody></table></div>
+        </section>
+      </section>
+    </main>
+    <footer class="site-footer"><span>Built to make Boolean logic easier to see.</span><span>Binary states: <b>0</b> LOW · <b>1</b> HIGH</span></footer>
+  </div>
 </body>
 </html>
